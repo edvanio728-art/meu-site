@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>ED-VA | Autenticação Institucional</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h1, h2 {
+      color: #001530;
+    }
+
+    label {
+      font-weight: bold;
+      color: #001530;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #001530;
+      color: #fdd835;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+      color: #001530;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .modulo {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Área de Cadastro -->
+    <div id="cadastro-area" class="hidden">
+      <h1>📝 Cadastro de Usuário</h1>
+      <label for="cad-nome">Nome Completo</label>
+      <input type="text" id="cad-nome">
+
+      <label for="cad-email">E-mail</label>
+      <input type="email" id="cad-email">
+
+      <label for="cad-senha">Senha</label>
+      <input type="password" id="cad-senha">
+
+      <label for="cad-perfil">Perfil de Acesso</label>
+      <select id="cad-perfil">
+        <option value="">Selecione...</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Operador">Operador</option>
+        <option value="Auditor">Auditor</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="Temporário">Temporário</option>
+      </select>
+
+      <button onclick="registrarUsuario()">Cadastrar</button>
+      <div class="link" onclick="mostrarLogin()">Já tenho conta</div>
+    </div>
+
+    <!-- Área de Login -->
+    <div id="login-area">
+      <h1>🔐 Login Institucional</h1>
+      <label for="login-email">E-mail</label>
+      <input type="email" id="login-email">
+
+      <label for="login-senha">Senha</label>
+      <input type="password" id="login-senha">
+
+      <button onclick="autenticarUsuario()">Entrar</button>
+      <div class="link" onclick="mostrarCadastro()">Não tenho conta</div>
+    </div>
+
+    <!-- Área de Perfil -->
+    <div id="perfil-area" class="hidden">
+      <h1>👤 Perfil Institucional</h1>
+      <p>Bem-vindo, <span id="perfil-nome"></span>!</p>
+
+      <label for="perfil-email">E-mail</label>
+      <input type="email" id="perfil-email" disabled>
+
+      <label for="perfil-tipo">Perfil</label>
+      <input type="text" id="perfil-tipo" disabled>
+
+      <div id="modulos-area"></div>
+
+      <button onclick="logout()" style="margin-top:20px; background:#c62828;">Sair</button>
+    </div>
+
+  </div>
+
+  <script>
+    let usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+    let usuarioLogado = null;
+
+    const perfis = {
+      Administrador: {
+        acesso: ["Gestão de Usuários", "Gestão de Dados", "Relatórios", "Inventário", "Agenda", "Auditoria"],
+        descricao: "Acesso total ao sistema, gestão de usuários, módulos e auditoria."
+      },
+      Operador: {
+        acesso: ["Inventário", "Agenda"],
+        descricao: "Execução de tarefas operacionais com interface simplificada."
+      },
+      Auditor: {
+        acesso: ["Relatórios", "Auditoria"],
+        descricao: "Visualização de trilhas, relatórios e conformidade institucional."
+      },
+      Supervisor: {
+        acesso: ["Gestão de Dados", "Relatórios", "Agenda"],
+        descricao: "Validação de registros, controle de fluxos e relatórios por setor."
+      },
+      Temporário: {
+        acesso: ["Agenda"],
+        descricao: "Acesso limitado por tempo ou função específica, com bloqueio automático.",
+        expira: true
+      }
+    };
+
+    function mostrarCadastro() {
+      document.getElementById("login-area").classList.add("hidden");
+      document.getElementById("cadastro-area").classList.remove("hidden");
+    }
+
+    function mostrarLogin() {
+      document.getElementById("cadastro-area").classList.add("hidden");
+      document.getElementById("login-area").classList.remove("hidden");
+    }
+
+    function registrarUsuario() {
+      const nome = document.getElementById("cad-nome").value.trim();
+      const email = document.getElementById("cad-email").value.trim();
+      const senha = document.getElementById("cad-senha").value.trim();
+      const perfil = document.getElementById("cad-perfil").value;
+
+      if (!nome || !email || !senha || !perfil) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const existe = usuarios.find(u => u.email === email);
+      if (existe) {
+        alert("Este e-mail já está cadastrado.");
+        return;
+      }
+
+      usuarios.push({ nome, email, senha, perfil });
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+      alert("Cadastro realizado com sucesso!");
+      mostrarLogin();
+    }
+
+    function autenticarUsuario() {
+      const email = document.getElementById("login-email").value.trim();
+      const senha = document.getElementById("login-senha").value.trim();
+
+      const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+      if (!usuario) {
+        alert("Credenciais inválidas.");
+        return;
+      }
+
+      usuarioLogado = usuario;
+      document.getElementById("login-area").classList.add("hidden");
+      document.getElementById("perfil-area").classList.remove("hidden");
+
+      document.getElementById("perfil-nome").textContent = usuario.nome;
+      document.getElementById("perfil-email").value = usuario.email;
+      document.getElementById("perfil-tipo").value = usuario.perfil;
+
+      carregarModulos(usuario.perfil);
+
+      if (perfis[usuario.perfil].expira) {
+        setTimeout(() => {
+          alert("Sessão temporária expirada.");
+          logout();
+        }, 60000); // 1 minuto
+      }
+    }
+
+    function carregarModulos(perfil) {
+      const area = document.getElementById("modulos-area");
+      area.innerHTML = "";
+
+      const acesso = perfis[perfil].acesso;
+      const descricao = perfis[perfil].descricao;
+
+      const desc = document.createElement("p");
+      desc.textContent = "🔐 " + descricao;
+      area.appendChild(desc);
+
+      acesso.forEach(modulo => {
+        const div = document.createElement("div");
+        div.className = "modulo";
+        div.textContent = "✅ " + modulo;
+        area.appendChild(div);
+      });
+    }
+
+    function logout() {
+      usuarioLogado = null;
+      document.getElementById("perfil-area").classList.add("hidden");
+      document.getElementById("login-area").classList.remove("hidden");
+      document.getElementById("login-email").value = "";
+      document.getElementById("login-senha").value = "";
+    }
+  </script>
+
+</body>
+</html>

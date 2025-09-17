@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+      <title>Registro | ED-VA</title>
+      <link rel="stylesheet" href="style.css">
+        <style>
+          .registro-container {
+          max-width: 500px;
+          margin: 80px auto;
+          background: #fff;
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          }
+          .registro-container h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #212121;
+          }
+          .registro-container input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          }
+          .registro-container button {
+          width: 100%;
+          padding: 12px;
+          background-color: #ffca28;
+          border: none;
+          color: #212121;
+          font-weight: bold;
+          border-radius: 4px;
+          cursor: pointer;
+          }
+        </style>
+      </head>
+  <body>
+    <div class="registro-container">
+      <h2>
+        <i class="fas fa-user-plus"></i> Criar Conta
+      </h2>
+      <form action="registrar.php" method="POST">
+        <input type="text" name="nome" placeholder="Nome completo" required="">
+          <input type="email" name="email" placeholder="E-mail institucional" required="">
+            <input type="password" name="senha" placeholder="Senha" required="">
+              <button type="submit">Registrar</button>
+            </form>
+    </div>
+  </body>
+</html>

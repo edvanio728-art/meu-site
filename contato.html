@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+      <title>Contato | ED-VA</title>
+      <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          <style>
+            body {
+            background-color: #f4f6f9;
+            }
+            .contato-header {
+            background-color: #1b1b2f;
+            color: #00bcd4;
+            padding: 40px 30px;
+            border-bottom: 4px solid #00bcd4;
+            text-align: left;
+            }
+            .contato-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            }
+            .contato-header p {
+            font-size: 1.1em;
+            color: #80deea;
+            }
+            .form-section {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            .form-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1b1b2f;
+            }
+            .form-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            }
+            .form-section input,
+            .form-section textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            }
+            .form-section button {
+            padding: 12px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            }
+            .form-section button:hover {
+            background-color: #0097a7;
+            }
+            .dropdown-menu.show {
+            display: block;
+            }
+          </style>
+        </head>
+  <body>
+
+    <!-- Cabeçalho Slim com Submenu -->
+    <header class="header-slim">
+      <div class="header-container">
+        <a href="index.html">
+          <img src="images/logo-edva.png" alt="Logotipo ED-VA" class="logo-slim">
+      </a>
+        <nav>
+          <ul class="nav-slim">
+            <li>
+              <a href="index.html#about">
+                <i class="fas fa-info-circle"></i> Sobre
+              </a>
+            </li>
+            <li class="dropdown" id="solucoes-dropdown">
+              <a href="#" id="solucoes-toggle">
+                <i class="fas fa-cubes"></i> Soluções <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" id="solucoes-menu">
+                <li>
+                  <a href="modular.html">
+                    <i class="fas fa-cube"></i> Arquitetura Modular
+                  </a>
+                </li>
+                <li>
+                  <a href="perfil.html">
+                    <i class="fas fa-user-shield"></i> Controle por Perfil
+                  </a>
+                </li>
+                <li>
+                  <a href="automacao.html">
+                    <i class="fas fa-robot"></i> Automação Inteligente
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="ajuda.html">
+                <i class="fas fa-life-ring"></i> Ajuda
+              </a>
+            </li>
+            <li>
+              <a href="contato.html">
+                <i class="fas fa-envelope"></i> Contato
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Título técnico -->
+    <div class="contato-header">
+      <h1>
+        <i class="fas fa-envelope-open-text"></i> Fale com a ED-VA
+      </h1>
+      <p>Estamos prontos para transformar sua operação com soluções digitais modulares.</p>
+    </div>
+
+    <!-- Formulário de Contato -->
+    <section id="formulario" class="form-section">
+      <h2>Envie sua mensagem</h2>
+      <form action="#" method="post">
+        <input type="text" name="nome" placeholder="Seu nome completo" required="">
+          <input type="email" name="email" placeholder="Seu e-mail" required="">
+            <input type="text" name="assunto" placeholder="Assunto da mensagem" required="">
+              <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required=""></textarea>
+              <button type="submit">Enviar Mensagem</button>
+            </form>
+    </section>
+
+    <!-- Cubo de Navegação Flutuante -->
+    <div class="cubo-nav">
+      <button class="cubo-toggle">
+        <i class="fas fa-th"></i>
+      </button>
+      <div class="cubo-menu">
+        <a href="#formulario" title="Formulário">
+          <i class="fas fa-edit"></i>
+        </a>
+        <a href="modular.html" title="Arquitetura Modular">
+          <i class="fas fa-cubes"></i>
+        </a>
+        <a href="perfil.html" title="Controle por Perfil">
+          <i class="fas fa-user-shield"></i>
+        </a>
+        <a href="automacao.html" title="Automação">
+          <i class="fas fa-robot"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ED-VA. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Script para submenu interativo -->
+    <script>
+      const toggle = document.getElementById('solucoes-toggle');
+      const menu = document.getElementById('solucoes-menu');
+
+      toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      menu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', (e) => {
+      if (!document.getElementById('solucoes-dropdown').contains(e.target)) {
+      menu.classList.remove('show');
+      }
+      });
+    </script>
+
+  </body>
+</html>

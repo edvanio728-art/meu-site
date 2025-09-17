@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle por Perfil | ED-VA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f6f9;
+    }
+    .perfil-header {
+      background-color: #002147;
+      color: #fdd835;
+      padding: 40px 30px;
+      border-bottom: 4px solid #fdd835;
+      text-align: left;
+    }
+    .perfil-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .perfil-header p {
+      font-size: 1.1em;
+      color: #ffe066;
+    }
+    .perfil-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+    .perfil-card {
+      background-color: #fff;
+      border: 2px solid #fdd835;
+      border-radius: 10px;
+      width: 280px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .perfil-card i {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #002147;
+    }
+    .perfil-card h3 {
+      margin: 10px 0 5px;
+    }
+    .perfil-card p {
+      font-size: 0.95em;
+      color: #333;
+    }
+    .dropdown-menu.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho Slim com Submenu -->
+  <header class="header-slim">
+    <div class="header-container">
+      <a href="index.html">
+        <img src="images/logo-edva.png" alt="Logotipo ED-VA" class="logo-slim">
+      </a>
+      <nav>
+        <ul class="nav-slim">
+          <li><a href="index.html#about"><i class="fas fa-info-circle"></i> Sobre</a></li>
+          <li class="dropdown" id="solucoes-dropdown">
+            <a href="#" id="solucoes-toggle"><i class="fas fa-cubes"></i> Soluções <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu" id="solucoes-menu">
+              <li><a href="modular.html"><i class="fas fa-cube"></i> Arquitetura Modular</a></li>
+              <li><a href="perfil.html"><i class="fas fa-user-shield"></i> Controle por Perfil</a></li>
+              <li><a href="automacao.html"><i class="fas fa-robot"></i> Automação Inteligente</a></li>
+            </ul>
+          </li>
+          <li><a href="ajuda.html"><i class="fas fa-life-ring"></i> Ajuda</a></li>
+          <li><a href="contato.html"><i class="fas fa-envelope"></i> Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Título técnico -->
+  <div class="perfil-header">
+    <h1><i class="fas fa-user-shield"></i> Controle por Perfil</h1>
+    <p>Solução ED-VA para governança digital, rastreabilidade e segurança institucional.</p>
+  </div>
+
+  <!-- Conteúdo institucional -->
+  <section id="introducao" class="institucional-section">
+    <h2 class="section-title">O que é Controle por Perfil?</h2>
+    <p class="section-intro">
+      O <strong>Controle por Perfil</strong> segmenta o acesso aos sistemas conforme o papel de cada usuário. Cada perfil possui permissões específicas, trilhas de auditoria e visibilidade limitada ao que realmente importa.
+    </p>
+    <div class="grid-3">
+      <div class="card institucional-card">
+        <i class="fas fa-user-tie card-icon"></i>
+        <h3>Para que serve?</h3>
+        <p>Protege dados, organiza responsabilidades e garante disciplina institucional.</p>
+      </div>
+      <div class="card institucional-card">
+        <i class="fas fa-users card-icon"></i>
+        <h3>Para quem serve?</h3>
+        <p>Empresas com múltiplos departamentos, dados sensíveis ou operações complexas.</p>
+      </div>
+      <div class="card institucional-card">
+        <i class="fas fa-shield-alt card-icon"></i>
+        <h3>Diferenciais</h3>
+        <p>Evita acessos indevidos, fortalece a identidade institucional e garante rastreabilidade.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perfis Técnicos -->
+  <section id="perfis" class="institucional-section">
+    <h2 class="section-title">Perfis Técnicos</h2>
+    <p class="section-intro">Cada perfil é configurado com base na função institucional. Veja os principais:</p>
+    <div class="perfil-grid">
+      <div class="perfil-card">
+        <i class="fas fa-user-tie"></i>
+        <h3>Administrador</h3>
+        <p>Acesso total ao sistema, gestão de usuários, módulos e auditoria.</p>
+      </div>
+      <div class="perfil-card">
+        <i class="fas fa-user-cog"></i>
+        <h3>Operador</h3>
+        <p>Execução de tarefas operacionais com interface simplificada.</p>
+      </div>
+      <div class="perfil-card">
+        <i class="fas fa-user-secret"></i>
+        <h3>Auditor</h3>
+        <p>Visualização de trilhas, relatórios e conformidade institucional.</p>
+      </div>
+      <div class="perfil-card">
+        <i class="fas fa-user-edit"></i>
+        <h3>Supervisor</h3>
+        <p>Validação de registros, controle de fluxos e relatórios por setor.</p>
+      </div>
+      <div class="perfil-card">
+        <i class="fas fa-user-clock"></i>
+        <h3>Temporário</h3>
+        <p>Acesso limitado por tempo ou função específica, com bloqueio automático.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefícios -->
+  <section id="beneficios" class="institucional-section">
+    <h2 class="section-title">Benefícios Institucionais</h2>
+    <div class="grid-3">
+      <div class="card institucional-card">
+        <i class="fas fa-lock card-icon"></i>
+        <h3>Segurança</h3>
+        <p>Redução de riscos operacionais e proteção de dados sensíveis.</p>
+      </div>
+      <div class="card institucional-card">
+        <i class="fas fa-stream card-icon"></i>
+        <h3>Organização</h3>
+        <p>Fluxos claros, responsabilidades definidas e menos retrabalho.</p>
+      </div>
+      <div class="card institucional-card">
+        <i class="fas fa-history card-icon"></i>
+        <h3>Rastreabilidade</h3>
+        <p>Trilhas de auditoria por usuário, ação e módulo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chamada institucional -->
+  <section id="contato" class="institucional-section">
+    <h2 class="section-title">Quer implementar controle por perfil na sua empresa?</h2>
+    <p class="section-intro">
+      Solicite uma demonstração gratuita e veja como a ED-VA pode transformar sua operação com disciplina, segurança e rastreabilidade.
+    </p>
+    <a href="contato.html" class="hero-button">Solicitar Demonstração</a>
+  </section>
+
+  <!-- Cubo de Navegação Flutuante -->
+  <div class="cubo-nav">
+    <button class="cubo-toggle">
+      <i class="fas fa-th"></i>
+    </button>
+    <div class="cubo-menu">
+      <a href="#introducao" title="Introdução"><i class="fas fa-cube"></i></a>
+      <a href="#perfis" title="Perfis"><i class="fas fa-user-shield"></i></a>
+         <a href="#beneficios" title="Benefícios"><i class="fas fa-star"></i></a>
+      <a href="#contato" title="Contato"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 ED-VA. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Script para submenu interativo -->
+  <script>
+    const toggle = document.getElementById('solucoes-toggle');
+    const menu = document.getElementById('solucoes-menu');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      menu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('solucoes-dropdown').contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
+  </script>
+
+</body>
+</html>

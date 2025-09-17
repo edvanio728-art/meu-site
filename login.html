@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+      <title>Painel Institucional | ED-VA</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          <style>
+            body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            }
+
+            .sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 220px;
+            height: 100%;
+            background-color: #212121;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding-top: 30px;
+            }
+
+            .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffca28;
+            }
+
+            .sidebar a {
+            padding: 15px 20px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            }
+
+            .sidebar a:hover {
+            background-color: #333;
+            }
+
+            .header {
+            margin-left: 220px;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            }
+
+            .header .empresa-info {
+            font-weight: bold;
+            color: #212121;
+            }
+
+            .header .plano {
+            background-color: #ffca28;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #212121;
+            }
+
+            .main-content {
+            margin-left: 220px;
+            padding: 30px;
+            }
+
+            .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            }
+
+            @media (max-width: 768px) {
+            .sidebar {
+            width: 100%;
+            height: auto;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 10px 0;
+            }
+
+            .sidebar h2 {
+            display: none;
+            }
+
+            .header, .main-content {
+            margin-left: 0;
+            }
+            }
+          </style>
+        </head>
+  <body>
+
+    <!-- Navegação lateral -->
+    <div class="sidebar">
+      <h2>ED-VA</h2>
+      <a href="#">
+        <i class="fas fa-home"></i> Dashboard
+      </a>
+      <a href="#">
+        <i class="fas fa-cubes"></i> Módulos
+      </a>
+      <a href="#">
+        <i class="fas fa-users"></i> Usuários
+      </a>
+      <a href="#">
+        <i class="fas fa-clipboard-list"></i> Logs
+      </a>
+      <a href="#">
+        <i class="fas fa-cog"></i> Configurações
+      </a>
+    </div>
+
+    <!-- Cabeçalho -->
+    <div class="header">
+      <div class="empresa-info">
+        Empresa: <strong>Exemplo Ltda</strong>
+      </div>
+      <div class="plano">Plano: Gratuito</div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+      <div class="card">
+        <h3>
+          <i class="fas fa-cubes"></i> Módulos Ativos
+        </h3>
+        <p>Você tem 3 módulos ativos. Explore mais funcionalidades no plano premium.</p>
+      </div>
+
+      <div class="card">
+        <h3>
+          <i class="fas fa-users"></i> Usuários
+        </h3>
+        <p>Administre os perfis e permissões dos membros da sua equipe.</p>
+      </div>
+
+      <div class="card">
+        <h3>
+          <i class="fas fa-clipboard-list"></i> Logs de Auditoria
+        </h3>
+        <p>Visualize ações realizadas por usuários e mantenha rastreabilidade institucional.</p>
+      </div>
+    </div>
+
+  </body>
+</html>

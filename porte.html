@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+      <title>Simulador de Porte | ED-VA</title>
+      <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+          <style>
+            body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            }
+            .porte-header {
+            background-color: #001530;
+            color: #fdd835;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 4px solid #fdd835;
+            }
+            .porte-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            }
+            .porte-header p {
+            font-size: 1.1em;
+            color: #ffe066;
+            }
+            .porte-form {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+            .porte-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #001530;
+            }
+            .porte-form input, .porte-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            }
+            .porte-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #001530;
+            color: #fdd835;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            }
+            .porte-form button:hover {
+            background-color: #002147;
+            }
+            .resultado {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #001530;
+            }
+          </style>
+        </head>
+  <body>
+
+    <!-- Cabeçalho -->
+    <div class="porte-header">
+      <h1>Simulador de Porte Empresarial</h1>
+      <p>Descubra o porte da sua empresa com base em dados reais e critérios institucionais.</p>
+    </div>
+
+    <!-- Formulário -->
+    <div class="porte-form">
+      <label for="faturamento">Faturamento Anual (Kz)</label>
+      <input type="number" id="faturamento" placeholder="Ex: 12000000" required="">
+
+        <label for="funcionarios">Número de Funcionários</label>
+        <input type="number" id="funcionarios" placeholder="Ex: 25" required="">
+
+          <label for="setor">Setor de Atuação</label>
+          <select id="setor" required="">
+            <option value="">Selecione...</option>
+            <option value="comercio">Comércio</option>
+            <option value="industria">Indústria</option>
+            <option value="servicos">Serviços</option>
+            <option value="educacao">Educação</option>
+            <option value="saude">Saúde</option>
+          </select>
+
+          <button onclick="calcularPorte()">Calcular Porte</button>
+
+          <div class="resultado" id="resultado"></div>
+        </div>
+
+    <script>
+      function calcularPorte() {
+      const faturamento = parseFloat(document.getElementById('faturamento').value);
+      const funcionarios = parseInt(document.getElementById('funcionarios').value);
+      const resultado = document.getElementById('resultado');
+
+      if (isNaN(faturamento) || isNaN(funcionarios)) {
+      resultado.innerHTML = "Por favor, insira valores válidos.";
+      return;
+      }
+
+      let porte = "";
+
+      if (faturamento <= 1000000 || funcionarios <= 5) {
+      porte = "Microempresa";
+      } else if (faturamento <= 10000000 || funcionarios <= 50) {
+      porte = "Pequena Empresa";
+      } else if (faturamento <= 50000000 || funcionarios <= 250) {
+      porte = "Média Empresa";
+      } else {
+      porte = "Grande Empresa";
+      }
+
+      resultado.innerHTML = `🏢 Porte estimado: <strong>${porte}</strong>`;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Planejador Semanal | ED-VA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .agenda-header {
+      background-color: #001530;
+      color: #fdd835;
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 4px solid #fdd835;
+    }
+    .agenda-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .agenda-header p {
+      font-size: 1.1em;
+      color: #ffe066;
+    }
+    .agenda-form {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .agenda-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #001530;
+    }
+    .agenda-form input, .agenda-form select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    .agenda-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #001530;
+      color: #fdd835;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .agenda-form button:hover {
+      background-color: #002147;
+    }
+    .agenda-list {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .agenda-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+    .agenda-item:last-child {
+      border-bottom: none;
+    }
+    .agenda-item strong {
+      color: #001530;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <div class="agenda-header">
+    <h1>Planejador Semanal</h1>
+    <p>Organize metas e tarefas da sua equipe com clareza institucional.</p>
+  </div>
+
+  <!-- Formulário -->
+  <div class="agenda-form">
+    <label for="dia">Dia da Semana</label>
+    <select id="dia">
+      <option value="">Selecione...</option>
+      <option value="Segunda">Segunda-feira</option>
+      <option value="Terça">Terça-feira</option>
+      <option value="Quarta">Quarta-feira</option>
+      <option value="Quinta">Quinta-feira</option>
+      <option value="Sexta">Sexta-feira</option>
+    </select>
+
+    <label for="tarefa">Tarefa / Meta</label>
+    <input type="text" id="tarefa" placeholder="Ex: Revisar planilhas de estoque" required>
+
+    <label for="responsavel">Responsável</label>
+    <input type="text" id="responsavel" placeholder="Ex: João Silva" required>
+
+    <button onclick="adicionarTarefa()">Adicionar à Agenda</button>
+  </div>
+
+  <!-- Lista de Tarefas -->
+  <div class="agenda-list" id="lista-agenda">
+    <h2 style="text-align:center; color:#001530;">Agenda da Semana</h2>
+    <!-- Tarefas serão inseridas aqui -->
+  </div>
+
+  <script>
+    function adicionarTarefa() {
+      const dia = document.getElementById('dia').value;
+      const tarefa = document.getElementById('tarefa').value.trim();
+      const responsavel = document.getElementById('responsavel').value.trim();
+      const lista = document.getElementById('lista-agenda');
+
+      if (!dia || !tarefa || !responsavel) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const item = document.createElement('div');
+      item.className = 'agenda-item';
+      item.innerHTML = `<strong>${dia}:</strong> ${tarefa} <br><em>Responsável:</em> ${responsavel}`;
+      lista.appendChild(item);
+
+      // Limpar campos
+      document.getElementById('dia').value = "";
+      document.getElementById('tarefa').value = "";
+      document.getElementById('responsavel').value = "";
+    }
+  </script>
+
+</body>
+</html>
